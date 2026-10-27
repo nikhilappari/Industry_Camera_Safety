@@ -1,0 +1,47 @@
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import Overview from './components/Dashboard/Overview';
+import LiveMonitoring from './components/Monitoring/LiveMonitoring';
+import IncidentList from './components/Incidents/IncidentList';
+import IncidentDetail from './components/Incidents/IncidentDetail';
+import CameraManager from './components/Cameras/CameraManager';
+import AnalyticsDashboard from './components/Analytics/AnalyticsDashboard';
+import AdminPanel from './components/Admin/AdminPanel';
+import LoginPage from './components/Auth/LoginPage';
+import ProtectedRoute from './components/Auth/ProtectedRoute';
+import { AuthProvider } from './context/AuthContext';
+
+function App() {
+  return (
+    <AuthProvider>
+      <Routes>
+        {/* Public Authentication Route */}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* Protected Dashboard & Monitoring Routes */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Overview />} />
+          <Route path="monitoring" element={<LiveMonitoring />} />
+          <Route path="incidents" element={<IncidentList />} />
+          <Route path="incidents/:id" element={<IncidentDetail />} />
+          <Route path="cameras" element={<CameraManager />} />
+          <Route path="analytics" element={<AnalyticsDashboard />} />
+          <Route path="admin" element={<AdminPanel />} />
+        </Route>
+
+        {/* Fallback redirect */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AuthProvider>
+  );
+}
+
+export default App;
