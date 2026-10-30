@@ -9,7 +9,9 @@ import {
   Settings, 
   LogOut, 
   User as UserIcon,
-  LogIn
+  LogIn,
+  Flame,
+  Sparkles
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -50,6 +52,33 @@ const Sidebar = () => {
             {item.label}
           </NavLink>
         ))}
+
+        {/* Dedicated AEGISBURN AI Launcher Entry */}
+        <div className="pt-4 mt-4 border-t border-gray-100">
+          <NavLink
+            to="/aegis-burn"
+            className={({ isActive }) =>
+              `flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all ${
+                isActive
+                  ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-cyan-300 shadow-md'
+                  : 'bg-gradient-to-r from-gray-900 via-slate-900 to-gray-800 text-white hover:from-black hover:to-gray-900 shadow-sm'
+              }`
+            }
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
+                <Flame className="w-4 h-4 text-cyan-400" />
+              </div>
+              <div className="text-left">
+                <span className="block text-xs font-bold tracking-wide">AEGISBURN AI</span>
+                <span className="block text-[10px] text-gray-400 font-normal">Data & Anomaly Engine</span>
+              </div>
+            </div>
+            <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+              PRO
+            </span>
+          </NavLink>
+        </div>
       </nav>
 
       {/* Auth user footer */}

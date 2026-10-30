@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Activity, AlertOctagon, Video, CheckCircle2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Activity, AlertOctagon, Video, CheckCircle2, Flame, ArrowRight, ShieldCheck, Cpu } from 'lucide-react';
 import StatsCard from './StatsCard';
 import IncidentTrendChart from './IncidentTrendChart';
 import { analyticsApi, modelsApi } from '../../services/api';
 import { AnalyticsSummary, ModelStatus } from '../../types';
 
 const Overview = () => {
+  const navigate = useNavigate();
   const [summary, setSummary] = useState<AnalyticsSummary | null>(null);
   const [modelStatus, setModelStatus] = useState<ModelStatus | null>(null);
 
@@ -31,7 +33,36 @@ const Overview = () => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800">Dashboard Overview</h2>
+      {/* Top Banner: AEGISBURN AI Feature Promotion */}
+      <div className="p-5 rounded-2xl bg-gradient-to-r from-gray-950 via-slate-900 to-gray-900 border border-gray-800 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800 font-bold">
+              NEW ML PLATFORM
+            </span>
+            <span className="text-xs text-gray-400">Automated Telemetry & Hazard Screening</span>
+          </div>
+          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+            <Flame className="w-5 h-5 text-cyan-400" />
+            AEGISBURN AI — Data Screening, Anomaly Detection & Prediction
+          </h2>
+          <p className="text-xs text-gray-400 max-w-2xl">
+            Train candidate models on your custom datasets, screen for thermal hazards & sensor drift,
+            inspect tabular predictions, and download formal compliance audit reports.
+          </p>
+        </div>
+        <button
+          onClick={() => navigate('/aegis-burn')}
+          className="px-4 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-cyan-950 font-bold text-xs tracking-wide shadow-md shadow-cyan-500/20 transition-all flex items-center gap-2 shrink-0 cursor-pointer"
+        >
+          <span>Launch AEGISBURN AI</span>
+          <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-gray-800">Dashboard Overview</h2>
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard title="Active Cameras" value={summary.total_cameras} icon={Video} color="cyan" />

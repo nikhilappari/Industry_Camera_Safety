@@ -260,3 +260,36 @@ npm test
 ## License
 
 This project is for educational and demonstration purposes. Review the [model license](https://huggingface.co/Hansung-Cho/yolov8-ppe-detection) before commercial deployment.
+
+
+---
+
+## AEGISBURN AI — Data Screening, Anomaly Detection & Prediction Platform
+
+**AEGISBURN AI** is a production-grade machine learning module integrated into the platform for industrial telemetry screening, sensor drift analysis, fire/thermal risk assessment, and anomaly isolation.
+
+### Features
+1. **Interactive Dual-Dataset Upload**: Drag-and-drop or browse CSV and XLSX training and testing datasets.
+2. **Automated Data Inspection**: Auto-detects logical column types (numerical, categorical, identifiers), missing values, duplicates, and variance.
+3. **Schema Compatibility Engine**: Cross-validates training vs. testing feature dimensions, identifies missing or unexpected columns, and prevents training on test labels.
+4. **AutoML Training & Model Comparison**: Trains and evaluates candidate scikit-learn models (Gradient Boosting, Random Forest, Extra Trees, Logistic Regression, Decision Trees, Ridge, Linear Regression) with cross-validation and feature importance extraction.
+5. **Continuous Anomaly Scoring & Hazard Tiers**: Computes normalized anomaly scores (0 to 100) using Isolation Forest and predicts hazard severity classes (`Critical / High Risk`, `Review / Intermediate`, `Nominal / Low Risk`).
+6. **Predictions Workspace**: Filterable, searchable, and paginated table with individual row telemetry drawers.
+7. **One-Click Export**: Download batch prediction results in CSV, Excel (XLSX), or JSON.
+8. **Human-in-the-Loop Anomaly Resolution**: Tag records as `Needs Review`, `Investigating`, `Confirmed Anomaly`, or `False Positive`.
+9. **Formal Audit Reports**: Structured printable screening summary reports.
+
+### Accessing AEGISBURN AI
+- **Web Interface**: Click **AEGISBURN AI** in the left sidebar or the launcher banner on the Overview dashboard (`/aegis-burn`).
+- **REST API Endpoints**:
+  - `GET /api/aegis-burn/session`: Fetch active workspace, model, and prediction summary.
+  - `POST /api/aegis-burn/datasets/training`: Upload and inspect training dataset.
+  - `POST /api/aegis-burn/datasets/testing`: Upload and inspect testing dataset.
+  - `GET /api/aegis-burn/schema-comparison`: Validate train/test schema compatibility.
+  - `POST /api/aegis-burn/train-and-benchmark`: Run AutoML benchmark across algorithms.
+  - `POST /api/aegis-burn/predict`: Run batch inference on uploaded testing dataset.
+  - `GET /api/aegis-burn/predictions`: Fetch paginated, risk-filtered prediction records.
+  - `POST /api/aegis-burn/records/{row_id}/review`: Persist human-in-the-loop investigation decisions.
+  - `GET /api/aegis-burn/export`: Export downloadable CSV, Excel, or JSON predictions.
+  - `GET /api/aegis-burn/report`: Structured audit report.
+  - `GET /api/aegis-burn/history`: Historical analysis runs.

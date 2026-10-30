@@ -199,6 +199,14 @@ try:
 except Exception as e:
     logger.warning(f"Could not import organizations router: {e}")
 
+try:
+    from app.modules.aegis_burn.router import router as aegis_router
+    app.include_router(aegis_router)
+    logger.info("Mounted AEGISBURN AI router")
+except Exception as e:
+    logger.warning(f"Could not import aegis_burn router: {e}")
+
+
 
 # --- WebSocket endpoint ---
 # websocket.py exports a function, not a router

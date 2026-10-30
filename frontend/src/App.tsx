@@ -11,6 +11,7 @@ import AdminPanel from './components/Admin/AdminPanel';
 import LoginPage from './components/Auth/LoginPage';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
+import AegisBurnView from './components/AegisBurn/AegisBurnView';
 
 function App() {
   return (
@@ -18,6 +19,16 @@ function App() {
       <Routes>
         {/* Public Authentication Route */}
         <Route path="/login" element={<LoginPage />} />
+
+        {/* Dedicated Full-Screen AEGISBURN AI Studio */}
+        <Route
+          path="/aegis-burn"
+          element={
+            <ProtectedRoute>
+              <AegisBurnView />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Protected Dashboard & Monitoring Routes */}
         <Route
